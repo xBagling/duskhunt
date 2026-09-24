@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xbagling.github.io/duskhunt/sitemap.xml
