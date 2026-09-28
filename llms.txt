@@ -1,0 +1,11 @@
+# Dusk Hunt
+
+> A free daily animal sound quiz, played in the browser. Everyone gets the same mystery animal each day and hears its real call slowed to 1/8 speed. Every miss speeds the call up and moves the sun lower; you have six tries to name the animal before dark.
+
+- [Play Dusk Hunt](https://xbagling.github.io/duskhunt/): today's animal, free, no sign-up.
+- Each wrong guess shows how close it was on the tree of life: same class, same order, same family, or (in normal mode) the right kind of animal.
+- Guesses can be any animal, breed or nickname (over 1,200 of them), plus a few silly non-animals.
+- Animals from the whole world, or from one part of it (Europe, Asia, Africa, the Americas or Oceania), picked on a map. Each part has its own animal every day.
+- Three modes with the same sounds: easy (the everyday name is enough, like "toad" for an American toad or "owl" for a barn owl), normal, and hard (only the exact species counts). Past days can be played from the archive.
+- The recordings are real field recordings from Wikimedia Commons under free licences (CC0, public domain, CC BY, CC BY-SA), credited in the game.
+- Results can be shared as a spoiler-free line of emoji. Works on phones and computers, and offline once loaded.
