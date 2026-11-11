@@ -1,0 +1,5 @@
+# Dusk Hunt: a daily animal sound quiz.
+User-agent: *
+Allow: /
+
+Sitemap: https://xbagling.github.io/duskhunt/sitemap.xml

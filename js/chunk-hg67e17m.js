@@ -1,0 +1,33 @@
+import{f,e,l,a,c,v,b,i,m,t,h,p,A,g,y,w,k,E,S,M}from"./app-xrm3t3pb.js";var O="world",Y=[{top:"#6db6e4",bot:"#dcf0f2",far:"#a8d096",near:"#5e9c63",sun:"#ffe39a",sx:58,sy:20},{top:"#7fb4dc",bot:"#f1ead0",far:"#b0cf92",near:"#679a61",sun:"#ffdc7c",sx:70,sy:26},{top:"#f0a35e",bot:"#ffe3a8",far:"#c6ca82",near:"#80945a",sun:"#fff3c4",sx:86,sy:34},{top:"#d2706f",bot:"#f8b877",far:"#a67968",near:"#664c4f",sun:"#ffd9a0",sx:100,sy:44},{top:"#2c2a5e",bot:"#8b5a7e",far:"#4e3e66",near:"#2a2446",sun:"#f4e9c8",sx:132,sy:20,moon:!0,stars:0.6,dark:!0},{top:"#070b24",bot:"#1d2458",far:"#1b2152",near:"#0f1436",sun:"#f4e9c8",sx:128,sy:17,moon:!0,stars:1,dark:!0}],R=[{top:"#cfe3ea",bot:"#f7efe0",far:"#c4d8c0",near:"#a9c2a4",sun:null},{top:"#e9d7e4",bot:"#fbeee2",far:"#d6cbd6",near:"#bcaec4",sun:null},{top:"#f3dccb",bot:"#fdf3e4",far:"#dccfb8",near:"#c3b59a",sun:null},{top:"#d6e0f0",bot:"#f3f0ea",far:"#c9d2d8",near:"#aebcc6",sun:null}],U=["","Easy","Medium","Hard"],B=["1/8×","1/4×","1/2×","1×","dusk","night"],N=[[18,12],[34,26],[52,8],[74,18],[96,10],[118,24],[136,12],[150,30],[126,36],[64,32]],C='<svg class="paw" aria-hidden="true"><use href="#i-paw"/></svg>';function G(n){let s=i.game(n,O);if(!s||s.status==="playing"&&!s.guesses.length&&!s.started)return{key:"new",game:null};if(s.status==="playing")return{key:"playing",game:s};return{key:s.status,game:s}}var W=(n,s)=>n.key==="new"?R[s*7%R.length]:Y[n.key==="lost"?5:E(n.game)];function Z(n,s){let o=`sk${n}`,d=s.stars?N.map(([D,L])=>`<circle cx="${D}" cy="${L}" r=".9" fill="#f6efd9" opacity="${s.stars}"/>`).join(""):"",x=s.sun?s.moon?`<circle cx="${s.sx}" cy="${s.sy}" r="7" fill="${s.sun}"/><circle cx="${s.sx+3.5}" cy="${s.sy-2.5}" r="6" fill="${s.top}"/>`:`<circle cx="${s.sx}" cy="${s.sy}" r="15" fill="${s.sun}" opacity=".35"/><circle cx="${s.sx}" cy="${s.sy}" r="8" fill="${s.sun}"/>`:"";return`<svg class="scape" viewBox="0 0 160 80" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><linearGradient id="${o}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s.top}"/><stop offset="1" stop-color="${s.bot}"/></linearGradient></defs>
+    <rect width="160" height="80" fill="url(#${o})"/>${d}${x}
+    <path d="M0 50C26 42 52 47 82 42S134 37 160 44V80H0Z" fill="${s.far}"/>
+    <path d="M0 66C34 58 70 63 100 56S146 57 160 60V80H0Z" fill="${s.near}"/>
+  </svg>`}function I(n,s){let o=G(n),d=k(n,O),x=W(o,n),D=n===s?"#/":`#/day/${n}`,L=n===s?"Today":b(n),F,T,j,r;if(o.key==="won")F=`<span class="who cut">${m(d.animal,"stand")}</span>`,T=d.animal.name,j=`<span class="dtag found">${t("check")} ${B[o.game.guesses.length-1]}</span>`,r=`Day ${n}: ${T}, found ${S(o.game).when}`;else if(o.key==="lost")F=`<span class="who tracks">${C}${C}${C}</span>`,T=d.animal.name,j='<span class="dtag gone">got away</span>',r=`Day ${n}: ${T}, got away`;else if(o.key==="playing"){let u=o.game.guesses.length;F='<span class="who mystery">?</span>',T="In progress",j=`<span class="tries">${Array.from({length:f},(H,_)=>`<i class="${_<u?"used":""}"></i>`).join("")}</span>`,r=`Day ${n}: in progress, ${u} of ${f} tries used`}else F='<span class="who mystery">?</span>',T="Unsolved",j=`<span class="level">${Array.from({length:3},(u,H)=>`<i class="${H<d.difficulty?"on":""}">${C}</i>`).join("")}<b>${U[d.difficulty]}</b></span>`,r=`Day ${n}: not played yet, ${U[d.difficulty].toLowerCase()}`;return`<a class="day-card is-${o.key}${x.dark?" dark":""}${n===s?" today":""}" href="${D}" aria-label="${a(r)}">
+    <div class="sky">${Z(n,x)}<span class="num">${n}</span>${F}${n===s?'<span class="today-flag">Today</span>':""}</div>
+    <div class="body"><div class="d-date">${a(L)}</div><div class="d-name">${a(T)}</div><div class="d-meta">${j}</div></div>
+  </a>`}function X(n){let s=[],o=null;for(let d=n;d>=1;d--){let x=v(d),D=new Date(x);D.setDate(x.getDate()-(x.getDay()+6)%7);let L=D.toDateString();if(!o||o.key!==L)s.push(o={key:L,days:[]});o.days.push(d)}return s}function q(n,s){if(s===0)return"This week";if(s===1)return"Last week";let o=n.days[n.days.length-1],d=n.days[0],x=v(o).getMonth()===v(d).getMonth();return`${b(o,{month:"short",day:"numeric"})} – ${b(d,x?{day:"numeric"}:{month:"short",day:"numeric"})}`}function os({hero:n,view:s}){let o=c();O=i.area;let d="all";A(o),p("strip"),h(2),g(null,"hidden"),y(!1),w(!1);let x=Array.from({length:o},(r,u)=>G(u+1).key),D=x.filter((r)=>r==="won").length,L=x.filter((r)=>r==="lost").length,F=o-D-L,T=(r)=>(r/Math.max(1,o)*100).toFixed(2);n.innerHTML=`<div class="page-head"><h1>Past days</h1><p>${o} days of animals</p>${M("on-sky")}</div>`,s.innerHTML=`<div class="wrap">
+    <section class="card archive-summary" aria-label="Your progress">
+      <div class="as-nums">
+        <div><b>${D}</b><span>found</span></div>
+        <div><b>${L}</b><span>got away</span></div>
+        <div><b>${F}</b><span>left to play</span></div>
+      </div>
+      <div class="as-bar" aria-hidden="true"><i class="won" style="width:${T(D)}%"></i><i class="lost" style="width:${T(L)}%"></i></div>
+      <button class="btn btn-dark btn-block" id="random" type="button" ${F?"":"disabled"}>${t("shuffle")} ${F?"Surprise me with an unsolved day":"You've played every day"}</button>
+    </section>
+    <div class="filters" role="group" aria-label="Filter">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="new" aria-pressed="false">Unsolved</button>
+      <button class="chip" type="button" data-f="won" aria-pressed="false">Found</button>
+      <button class="chip" type="button" data-f="lost" aria-pressed="false">Got away</button>
+    </div>
+    <div id="days"></div>
+    <p class="logline" style="margin-top:18px">Archive games don't touch your streak</p>
+  </div>`;function j(){let r=(H)=>d==="all"||H===d||d==="new"&&H==="playing",u=X(o).map((H,_)=>{let P=H.days.filter((z)=>r(G(z).key));if(!P.length)return"";let V=H.days.filter((z)=>G(z).key==="won").length;return`<section class="week">
+          <header class="week-head"><h2>${a(q(H,_))}</h2><span>${V} of ${H.days.length} found</span></header>
+          <div class="days">${P.map((z)=>I(z,o)).join("")}</div>
+        </section>`}).join("");e("#days",s).innerHTML=u||'<p class="logline">Nothing here yet.</p>'}l(".chip[data-f]",s).forEach((r)=>r.addEventListener("click",()=>{d=r.dataset.f,l(".chip[data-f]",s).forEach((u)=>u.setAttribute("aria-pressed",String(u===r))),j()})),e("#random",s).addEventListener("click",()=>{let r=[];for(let u=1;u<o;u++)if(G(u).key==="new"||G(u).key==="playing")r.push(u);location.hash=r.length?`#/day/${r[Math.floor(Math.random()*r.length)]}`:"#/"}),j()}export{os as renderArchive};
+
+//# debugId=715498D8B831440C64756E2164756E21
+//# sourceMappingURL=chunk-hg67e17m.js.map
